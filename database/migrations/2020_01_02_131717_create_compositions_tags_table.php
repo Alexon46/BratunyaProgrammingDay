@@ -26,6 +26,6 @@ class CreateCompositionsTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('compositions_tags');
+        Schema::dropIfExists('composition_tag');
     }
 }

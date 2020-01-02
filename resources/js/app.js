@@ -120,13 +120,17 @@ var orderby_btn = document.querySelectorAll('.filter-order');
 })
 
 
-var filter_btn = document.querySelector('.filter-btn');
-search_btn.addEventListener('click', function (event) {
-    event.preventDefault();
-    let filter = this.getAttribute('data-filter');
-    let orderby = this.querySelector('.filter-order').getAttribute('data-value');
-    filter(filter, orderby);
-});
+var filter_btn = document.querySelectorAll('.filter-btn');
+[...search_btn].forEach(element => {
+    element.addEventListener('click', function (event) {
+        event.preventDefault();
+        let filter = this.getAttribute('data-filter');
+        console.log(filter);
+        let orderby = this.querySelector('.filter-order').getAttribute('data-value');
+        console.log(orderby);
+        filter(filter, orderby);
+    });
+})
 
 function filter(filter, value) {
     let params = filter+ '=' + encodeURIComponent(value);
@@ -159,7 +163,17 @@ function generateTable(date) {
         for(let i = 0; i < 3; i++){
             let cell = cell_example.cloneNode(false);
             cell.classList.add('content-table_row-cell-' + needdate[i]);
-            cell.innerHTML = element[needdate[i]];
+            if(needdate[i] == "tags"){
+                let ul = document.createElement('ul');
+                element[needdate[i]].forEach(element=>{
+                    let li = document.createElement('ul');
+                    li.innerHTML = element.tag;
+                    ul.append(li);
+                })
+                cell.innerHTML = ul;
+            }else{
+                cell.innerHTML = element[needdate[i]];
+            }
             row.append(cell);
         }
         table.append(row);

@@ -223,12 +223,17 @@ _toConsumableArray(orderby_btn).forEach(function (element) {
   });
 });
 
-var filter_btn = document.querySelector('.filter-btn');
-search_btn.addEventListener('click', function (event) {
-  event.preventDefault();
-  var filter = this.getAttribute('data-filter');
-  var orderby = this.querySelector('.filter-order').getAttribute('data-value');
-  filter(filter, orderby);
+var filter_btn = document.querySelectorAll('.filter-btn');
+
+_toConsumableArray(search_btn).forEach(function (element) {
+  element.addEventListener('click', function (event) {
+    event.preventDefault();
+    var filter = this.getAttribute('data-filter');
+    console.log(filter);
+    var orderby = this.querySelector('.filter-order').getAttribute('data-value');
+    console.log(orderby);
+    filter(filter, orderby);
+  });
 });
 
 function filter(filter, value) {
@@ -259,7 +264,21 @@ function generateTable(date) {
     for (var i = 0; i < 3; i++) {
       var cell = cell_example.cloneNode(false);
       cell.classList.add('content-table_row-cell-' + needdate[i]);
-      cell.innerHTML = element[needdate[i]];
+
+      if (needdate[i] == "tags") {
+        (function () {
+          var ul = document.createElement('ul');
+          element[needdate[i]].forEach(function (element) {
+            var li = document.createElement('ul');
+            li.innerHTML = element.tag;
+            ul.append(li);
+          });
+          cell.innerHTML = ul;
+        })();
+      } else {
+        cell.innerHTML = element[needdate[i]];
+      }
+
       row.append(cell);
     }
 
@@ -288,8 +307,8 @@ function generateTable(date) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

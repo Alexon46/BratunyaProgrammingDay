@@ -41,6 +41,8 @@ h1 .fs-sm {
   background-size: cover;
   background-position: center bottom;
   box-shadow: inset 10px -10px 150px -75px #3aaff1;
+  position: relative;
+  z-index: 11111111;
 }
 
 .header-content {

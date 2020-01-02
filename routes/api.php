@@ -13,5 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::resource('/compositions', 'API\CompositionController');
 Route::resource('/users', 'API\UserController');
 Route::get('/login', 'API\AuthenticationController@login');
+

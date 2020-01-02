@@ -34,6 +34,8 @@ h1 {
     background-size: cover;
     background-position: center bottom;
     box-shadow: inset 10px -10px 150px -75px #3aaff1;
+    position: relative;
+    z-index: 11111111;
     &-content {
         height: 100vh;
         width: 100%;

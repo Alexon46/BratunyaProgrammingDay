@@ -152,12 +152,12 @@ function authorisation() {
   var form = document.getElementById('sign_in');
   var params = 'username=' + encodeURIComponent(form.name.value) + '&password=' + encodeURIComponent(form.instrument.value);
   requestDate('/api/login?' + params).then(function (result) {
-    var json = JSON.stringify(result.responce);
+    var json = JSON.parse(result.response);
 
-    if (json.responce.error) {
+    if (json.error) {
       var errorText = document.createElement('span');
       errorText.classList.add('error');
-      errorText.innerHTML = result.responce.error;
+      errorText.innerHTML = json.error;
       form.append(errorText);
       errorText.classList.add('show');
     } else {
@@ -181,13 +181,13 @@ search_btn.addEventListener('click', function (event) {
 function search() {
   var form = document.getElementById('search');
   var params = 'search_s=' + encodeURIComponent(form.search_s.value);
-  requestDate('/api/search?' + params).then(function (result) {
-    var json = JSON.stringify(result.responce);
+  requestDate('/api/compositions?' + params).then(function (result) {
+    var json = JSON.parse(result.response);
 
-    if (json.responce.error) {
+    if (json.response.error) {
       var errorText = document.createElement('span');
       errorText.classList.add('error');
-      errorText.innerHTML = result.responce.error;
+      errorText.innerHTML = json.error;
       form.append(errorText);
       errorText.classList.add('show');
     } else {
@@ -243,8 +243,8 @@ function generateTable(date) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

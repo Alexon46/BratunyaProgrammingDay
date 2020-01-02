@@ -150,8 +150,10 @@ sign_in.addEventListener('click', function (event) {
 
 function authorisation() {
   var form = document.getElementById('sign_in');
-  var params = 'name=' + encodeURIComponent(form.name.value) + '&instrument=' + encodeURIComponent(form.instrument.value);
-  requestDate('?' + params).then(function (result) {}, function (error) {
+  var params = 'username=' + encodeURIComponent(form.name.value) + '&password=' + encodeURIComponent(form.instrument.value);
+  requestDate('/api/login?' + params).then(function (result) {
+    console.log(result);
+  }, function (error) {
     console.log("Rejected: " + error);
   })["catch"](function (error) {
     console.log("Catch: " + error);
@@ -178,8 +180,8 @@ function authorisation() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

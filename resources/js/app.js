@@ -33,9 +33,16 @@ function requestDate(url, proxy = ''){
 	})
 }
 
-function avtorisation(event){
+var sign_in = document.querySelector('#sign_in button');
+sign_in.addEventListener('click', function(event){
     event.preventDefault();
-    requestDate('')
+    avtorisation();
+})
+function authorisation(){
+    let form = document.getElementById('sign_in');
+    let params = 'name=' + encodeURIComponent(form.name.value) +
+    '&instrument=' + encodeURIComponent(form.instrument.value);
+    requestDate('?'+params)
         .then(result => {
 
             },

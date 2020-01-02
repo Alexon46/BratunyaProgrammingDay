@@ -142,9 +142,16 @@ function requestDate(url) {
   });
 }
 
-function avtorisation(event) {
+var sign_in = document.querySelector('#sign_in button');
+sign_in.addEventListener('click', function (event) {
   event.preventDefault();
-  requestDate('').then(function (result) {}, function (error) {
+  avtorisation();
+});
+
+function authorisation() {
+  var form = document.getElementById('sign_in');
+  var params = 'name=' + encodeURIComponent(form.name.value) + '&instrument=' + encodeURIComponent(form.instrument.value);
+  requestDate('?' + params).then(function (result) {}, function (error) {
     console.log("Rejected: " + error);
   })["catch"](function (error) {
     console.log("Catch: " + error);

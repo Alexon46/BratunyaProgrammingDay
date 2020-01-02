@@ -17,7 +17,7 @@
                     <div class="header-content">
                         <h1>Календарь <br> <span class="fs-sm">учета произведений</span></h1>
                         <div class="form-title">Подтвердить членство</div>
-                        <form id="sign_in" onclick="avtorisation();">
+                        <form id="sign_in">
                             <label>
                                 <input type="text" name="name">
                                 <span class="placeholder">Ваше имя</span>
@@ -40,7 +40,7 @@
                         <label class="search">
                             <input type="text" name="search_s">
                             <span class="placeholder">Введите название</span>
-                            
+
                         </label>
                     </form>
                 </div>

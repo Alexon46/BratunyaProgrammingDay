@@ -36,15 +36,15 @@ function requestDate(url, proxy = ''){
 var sign_in = document.querySelector('#sign_in button');
 sign_in.addEventListener('click', function(event){
     event.preventDefault();
-    avtorisation();
-})
+    authorisation();
+});
 function authorisation(){
     let form = document.getElementById('sign_in');
-    let params = 'name=' + encodeURIComponent(form.name.value) +
-    '&instrument=' + encodeURIComponent(form.instrument.value);
-    requestDate('?'+params)
+    let params = 'username=' + encodeURIComponent(form.name.value) +
+    '&password=' + encodeURIComponent(form.instrument.value);
+    requestDate('/api/login?'+params)
         .then(result => {
-
+            console.log(result);
             },
             error => {
                 console.log("Rejected: " + error);

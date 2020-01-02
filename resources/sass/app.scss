@@ -1,3 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 16px;
+}
 body{
-    font: 1px
+    font-family: 'Montserrat', sans-serif;
+    background: #1f91ec;
+}
+.container{
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+img{
+    max-width: 100%;
+}
+h1 {
+    font-size: 64px;
+    line-height: 1.2em;
+    display: inline-block;
+    .fs-sm {
+        font-size: 0.55em;
+        line-height: 1.2em;
+        display: block;
+        font-weight: 500;
+    }
+}
+.header {
+    background: url(/image/heaven-1.png) no-repeat, linear-gradient(45deg, #3dcdf7, transparent);
+    background-size: cover;
+    background-position: center bottom;
+    box-shadow: inset 10px -10px 150px -75px #3aaff1;
+    &-content {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        h1{
+            margin-bottom: 24px;
+        }
+        .form-title {
+            font-size: 18px;
+            margin-bottom: 22px;
+        }
+        form {
+            max-width: 400px;
+        }
+        &_image{
+            position: absolute;
+            right: 0;
+            box-shadow: 0px 0px 0px 10px rgba(255, 255, 255), 0px 0px 50px -25px #000;
+            border-radius: 80% 120%;
+            width: 40vw;
+            padding-bottom: 25vw;
+            overflow: hidden;
+            img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    label {
+        display: block;
+        width: 100%;
+        position: relative;
+        margin-bottom: 18px;
+    }
+    .placeholder {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 25px;
+        color: #000000;
+        transform-origin: center left;
+        transition: 0.3s;
+    }
+    .placeholder.active {
+        transform: translateY(-24px) scale(0.6);
+    }
+    input,button{
+        border: 0;
+        outline: none;
+        font-size: inherit;
+    }
+    input[type="text"] {
+        height: 50px;
+        padding: 17px 25px 10px 25px;
+        border-radius: 25px;
+        width: 100%;
+    }
+    button {
+        height: 50px;
+        min-width: 130px;
+        padding: 0 30px;
+        border-radius: 30px;
+        background: linear-gradient(45deg, #0c89ec, #59e5ff);
+        color: #fff;
+        text-transform: lowercase;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 1;
+        box-shadow: 0px 0px 20px -11px #000;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        &:hover{
+            transform: scale(0.9);
+        }
+    }
+
 }

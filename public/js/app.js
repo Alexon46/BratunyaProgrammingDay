@@ -93,7 +93,63 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+var form_field = document.querySelectorAll('form label');
+
+_toConsumableArray(form_field).forEach(function (element) {
+  var label = element.querySelector('.placeholder');
+  var field = element.querySelector('input');
+
+  field.onfocus = function () {
+    label.classList.add('active');
+  };
+
+  field.onblur = function () {
+    if (field.value.length == 0) {
+      label.classList.remove('active');
+    }
+  };
+});
+
+function requestDate(url) {
+  var proxy = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+  return new Promise(function (resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', proxy + url, true);
+
+    xhr.onload = function () {
+      if (this.status == 200) {
+        resolve(this);
+      } else {
+        var error = new Error(this.statusText);
+        error.code = this.status;
+        reject(error);
+      }
+    };
+
+    xhr.onerror = function () {
+      reject(new Error("Network Error"));
+    };
+
+    xhr.send();
+  });
+}
+
+function avtorisation(event) {
+  event.preventDefault();
+  requestDate('').then(function (result) {}, function (error) {
+    console.log("Rejected: " + error);
+  })["catch"](function (error) {
+    console.log("Catch: " + error);
+  });
+}
 
 /***/ }),
 

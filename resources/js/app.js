@@ -53,7 +53,7 @@ function authorisation() {
                     form.append(errorText);
                     errorText.classList.add('show');
                 } else {
-                    form.querySelector('.error').classList.remove('show');
+                    // form.querySelector('.error').classList.remove('show');
                     document.querySelector('.header').classList.add('hide');
                     document.querySelector('.content').classList.add('show');
 
@@ -90,7 +90,7 @@ function search() {
                     form.append(errorText);
                     errorText.classList.add('show');
                 } else {
-                    form.querySelector('.error').classList.remove('show');
+                    // form.querySelector('.error').classList.remove('show');
                     if (json.length) {
                         generateTable(json);
                     }
@@ -130,7 +130,7 @@ search_btn.addEventListener('click', function (event) {
 
 function filter(filter, value) {
     let params = filter+ '=' + encodeURIComponent(value);
-    requestDate('/api/compositions?' + params)
+    requestDate('/api/compositions1?' + params)
         .then(result => {
                 let json = JSON.parse(result.response);
                 if (json.length) {
@@ -155,11 +155,11 @@ function generateTable(date) {
     cell_example.classList.add('content-table_row-cell');
     date.forEach(element => {
         let row = row_example.cloneNode(false);
-        let needdate = ['title', 'tags', 'date'];
+        let needdate = ['title', 'tags', 'updated_at'];
         for(let i = 0; i < 3; i++){
             let cell = cell_example.cloneNode(false);
-            cell.classList.add('content-table_row-cell' + needdate[i]);
-            cell.innerHTML(element[needdate[i]]);
+            cell.classList.add('content-table_row-cell-' + needdate[i]);
+            cell.innerHTML = element[needdate[i]];
             row.append(cell);
         }
         table.append(row);

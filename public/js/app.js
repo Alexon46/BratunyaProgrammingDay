@@ -161,7 +161,7 @@ function authorisation() {
       form.append(errorText);
       errorText.classList.add('show');
     } else {
-      form.querySelector('.error').classList.remove('show');
+      // form.querySelector('.error').classList.remove('show');
       document.querySelector('.header').classList.add('hide');
       document.querySelector('.content').classList.add('show');
 
@@ -195,8 +195,7 @@ function search() {
       form.append(errorText);
       errorText.classList.add('show');
     } else {
-      form.querySelector('.error').classList.remove('show');
-
+      // form.querySelector('.error').classList.remove('show');
       if (json.length) {
         generateTable(json);
       }
@@ -234,7 +233,7 @@ search_btn.addEventListener('click', function (event) {
 
 function filter(filter, value) {
   var params = filter + '=' + encodeURIComponent(value);
-  requestDate('/api/compositions?' + params).then(function (result) {
+  requestDate('/api/compositions1?' + params).then(function (result) {
     var json = JSON.parse(result.response);
 
     if (json.length) {
@@ -255,12 +254,12 @@ function generateTable(date) {
   cell_example.classList.add('content-table_row-cell');
   date.forEach(function (element) {
     var row = row_example.cloneNode(false);
-    var needdate = ['title', 'tags', 'date'];
+    var needdate = ['title', 'tags', 'updated_at'];
 
     for (var i = 0; i < 3; i++) {
       var cell = cell_example.cloneNode(false);
-      cell.classList.add('content-table_row-cell' + needdate[i]);
-      cell.innerHTML(element[needdate[i]]);
+      cell.classList.add('content-table_row-cell-' + needdate[i]);
+      cell.innerHTML = element[needdate[i]];
       row.append(cell);
     }
 
@@ -289,8 +288,8 @@ function generateTable(date) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

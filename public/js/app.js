@@ -161,6 +161,10 @@ function authorisation() {
       form.append(errorText);
       errorText.classList.add('show');
     } else {
+      form.querySelector('.error').classList.remove('show');
+      document.querySelector('.header').classList.add('hide');
+      document.querySelector('.content').classList.add('show');
+
       if (json.length) {
         generateTable(json);
       }
@@ -191,9 +195,50 @@ function search() {
       form.append(errorText);
       errorText.classList.add('show');
     } else {
+      form.querySelector('.error').classList.remove('show');
+
       if (json.length) {
         generateTable(json);
       }
+    }
+  }, function (error) {
+    console.log("Rejected: " + error);
+  })["catch"](function (error) {
+    console.log("Catch: " + error);
+  });
+}
+
+var orderby_btn = document.querySelectorAll('.filter-order');
+
+_toConsumableArray(orderby_btn).forEach(function (element) {
+  element.addEventListener('click', function () {
+    var attr = this.getAttribute('data-value');
+
+    if (attr == 'asc') {
+      this.setAttribute('data-value', 'desc');
+      this.classList.add('reverse');
+    } else {
+      this.setAttribute('data-value', 'asc');
+      this.classList.remove('reverse');
+    }
+  });
+});
+
+var filter_btn = document.querySelector('.filter-btn');
+search_btn.addEventListener('click', function (event) {
+  event.preventDefault();
+  var filter = this.getAttribute('data-filter');
+  var orderby = this.querySelector('.filter-order').getAttribute('data-value');
+  filter(filter, orderby);
+});
+
+function filter(filter, value) {
+  var params = filter + '=' + encodeURIComponent(value);
+  requestDate('/api/compositions?' + params).then(function (result) {
+    var json = JSON.parse(result.response);
+
+    if (json.length) {
+      generateTable(json);
     }
   }, function (error) {
     console.log("Rejected: " + error);
@@ -210,11 +255,12 @@ function generateTable(date) {
   cell_example.classList.add('content-table_row-cell');
   date.forEach(function (element) {
     var row = row_example.cloneNode(false);
+    var needdate = ['title', 'tag', 'date'];
 
-    for (key in element) {
+    for (var i = 0; i < 3; i++) {
       var cell = cell_example.cloneNode(false);
-      cell, classList.add('content-table_row-cell-' + key);
-      cell.innerHTML(element[key]);
+      cell.classList.add('content-table_row-cell' + needdate[i]);
+      cell.innerHTML(element[needdate[i]]);
       row.append(cell);
     }
 
@@ -243,8 +289,8 @@ function generateTable(date) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -46,9 +46,9 @@
                         </form>
                 <div class="content-table">
                     <div class="content-table_row content-table_row-head">
-                        <div class="content-table_row-cell content-table_row-cell-title">Название произведения<div class="icon" data-value="asc"><img src={{ asset('/image/sort.svg') }} /></div></div>
+                        <div class="content-table_row-cell content-table_row-cell-title filter-btn" data-filter="title">Название произведения<div class="icon filter-order" data-value="asc"><img src={{ asset('/image/sort.svg') }} /></div></div>
                         <div class="content-table_row-cell content-table_row-cell-tags">Теги</div>
-                        <div class="content-table_row-cell content-table_row-cell-date">Дата исполнения <div class="icon" data-value="asc"><img src={{ asset('/image/sort.svg') }} /></div></div>
+                        <div class="content-table_row-cell content-table_row-cell-date filter-btn" data-filter="date">Дата исполнения <div class="icon filter-order" data-value="asc"><img src={{ asset('/image/sort.svg') }} /></div></div>
                     </div>
                     <div class="content-table_row">
                         <div class="content-table_row-cell content-table_row-cell-title">Название произведения1</div>

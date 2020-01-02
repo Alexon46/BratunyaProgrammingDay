@@ -53,6 +53,10 @@ function authorisation() {
                     form.append(errorText);
                     errorText.classList.add('show');
                 } else {
+                    form.querySelector('.error').classList.remove('show');
+                    document.querySelector('.header').classList.add('hide');
+                    document.querySelector('.content').classList.add('show');
+
                     if (json.length) {
                         generateTable(json);
                     }
@@ -86,6 +90,7 @@ function search() {
                     form.append(errorText);
                     errorText.classList.add('show');
                 } else {
+                    form.querySelector('.error').classList.remove('show');
                     if (json.length) {
                         generateTable(json);
                     }
@@ -100,6 +105,48 @@ function search() {
         })
 }
 
+var orderby_btn = document.querySelectorAll('.filter-order');
+[...orderby_btn].forEach(element => {
+    element.addEventListener('click', function(){
+        let attr = this.getAttribute('data-value');
+        if(attr == 'asc'){
+            this.setAttribute('data-value', 'desc');
+            this.classList.add('reverse');
+        }else{
+            this.setAttribute('data-value', 'asc');
+            this.classList.remove('reverse');
+        }
+    })
+})
+
+
+var filter_btn = document.querySelector('.filter-btn');
+search_btn.addEventListener('click', function (event) {
+    event.preventDefault();
+    let filter = this.getAttribute('data-filter');
+    let orderby = this.querySelector('.filter-order').getAttribute('data-value');
+    filter(filter, orderby);
+});
+
+function filter(filter, value) {
+    let params = filter+ '=' + encodeURIComponent(value);
+    requestDate('/api/compositions?' + params)
+        .then(result => {
+                let json = JSON.parse(result.response);
+                if (json.length) {
+                    generateTable(json);
+                }
+            },
+            error => {
+                console.log("Rejected: " + error);
+            }
+        )
+        .catch(error => {
+            console.log("Catch: " + error);
+        })
+}
+
+
 function generateTable(date) {
     let table = new DocumentFragment();
     let row_example = document.createElement('div');
@@ -108,10 +155,11 @@ function generateTable(date) {
     cell_example.classList.add('content-table_row-cell');
     date.forEach(element => {
         let row = row_example.cloneNode(false);
-        for (key in element) {
+        let needdate = ['title', 'tag', 'date'];
+        for(let i = 0; i < 3; i++){
             let cell = cell_example.cloneNode(false);
-            cell, classList.add('content-table_row-cell-' + key);
-            cell.innerHTML(element[key]);
+            cell.classList.add('content-table_row-cell' + needdate[i]);
+            cell.innerHTML(element[needdate[i]]);
             row.append(cell);
         }
         table.append(row);

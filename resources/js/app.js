@@ -155,7 +155,7 @@ function generateTable(date) {
     cell_example.classList.add('content-table_row-cell');
     date.forEach(element => {
         let row = row_example.cloneNode(false);
-        let needdate = ['title', 'tag', 'date'];
+        let needdate = ['title', 'tags', 'date'];
         for(let i = 0; i < 3; i++){
             let cell = cell_example.cloneNode(false);
             cell.classList.add('content-table_row-cell' + needdate[i]);

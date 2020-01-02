@@ -145,7 +145,7 @@ function requestDate(url) {
 var sign_in = document.querySelector('#sign_in button');
 sign_in.addEventListener('click', function (event) {
   event.preventDefault();
-  avtorisation();
+  authorisation();
 });
 
 function authorisation() {

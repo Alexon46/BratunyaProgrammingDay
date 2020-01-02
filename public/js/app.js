@@ -152,12 +152,75 @@ function authorisation() {
   var form = document.getElementById('sign_in');
   var params = 'username=' + encodeURIComponent(form.name.value) + '&password=' + encodeURIComponent(form.instrument.value);
   requestDate('/api/login?' + params).then(function (result) {
-    console.log(result);
+    var json = JSON.stringify(result.responce);
+
+    if (json.responce.error) {
+      var errorText = document.createElement('span');
+      errorText.classList.add('error');
+      errorText.innerHTML = result.responce.error;
+      form.append(errorText);
+      errorText.classList.add('show');
+    } else {
+      if (json.length) {
+        generateTable(json);
+      }
+    }
   }, function (error) {
     console.log("Rejected: " + error);
   })["catch"](function (error) {
     console.log("Catch: " + error);
   });
+}
+
+var search_btn = document.querySelector('#search button');
+search_btn.addEventListener('click', function (event) {
+  event.preventDefault();
+  search();
+});
+
+function search() {
+  var form = document.getElementById('search');
+  var params = 'search_s=' + encodeURIComponent(form.search_s.value);
+  requestDate('/api/search?' + params).then(function (result) {
+    var json = JSON.stringify(result.responce);
+
+    if (json.responce.error) {
+      var errorText = document.createElement('span');
+      errorText.classList.add('error');
+      errorText.innerHTML = result.responce.error;
+      form.append(errorText);
+      errorText.classList.add('show');
+    } else {
+      if (json.length) {
+        generateTable(json);
+      }
+    }
+  }, function (error) {
+    console.log("Rejected: " + error);
+  })["catch"](function (error) {
+    console.log("Catch: " + error);
+  });
+}
+
+function generateTable(date) {
+  var table = new DocumentFragment();
+  var row_example = document.createElement('div');
+  row_example.classList.add('content-table_row');
+  var cell_example = document.createElement('div');
+  cell_example.classList.add('content-table_row-cell');
+  date.forEach(function (element) {
+    var row = row_example.cloneNode(false);
+
+    for (key in element) {
+      var cell = cell_example.cloneNode(false);
+      cell, classList.add('content-table_row-cell-' + key);
+      cell.innerHTML(element[key]);
+      row.append(cell);
+    }
+
+    table.append(row);
+  });
+  document.querySelector('.content-table').append(table);
 }
 
 /***/ }),
@@ -180,8 +243,8 @@ function authorisation() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

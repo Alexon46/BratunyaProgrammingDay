@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Orchestra calendar</title>
 
         <!-- Fonts -->
         <link href={{ asset('/css/app.css') }} rel="stylesheet">
@@ -35,14 +35,35 @@
                 </div>
             </section>
             <section class="content">
-                <div class="content-header">
-                    <form class="filter">
-                        <label class="search">
-                            <input type="text" name="search_s">
-                            <span class="placeholder">Введите название</span>
-
-                        </label>
-                    </form>
+                <div class="container">
+                        <h2 class="section-title">Календарь учета произведений</h2>
+                        <form class="search" id="search">
+                            <label>
+                                <input type="text" name="search_s">
+                                <span class="placeholder">Введите название</span>
+                            </label>
+                            <button>Поиск</button>
+                        </form>
+                <div class="content-table">
+                    <div class="content-table_row content-table_row-head">
+                        <div class="content-table_row-cell content-table_row-cell-title">Название произведения<div class="icon" data-value="asc"><img src={{ asset('/image/sort.svg') }} /></div></div>
+                        <div class="content-table_row-cell content-table_row-cell-tags">Теги</div>
+                        <div class="content-table_row-cell content-table_row-cell-date">Дата исполнения <div class="icon" data-value="asc"><img src={{ asset('/image/sort.svg') }} /></div></div>
+                    </div>
+                    <div class="content-table_row">
+                        <div class="content-table_row-cell content-table_row-cell-title">Название произведения1</div>
+                        <div class="content-table_row-cell content-table_row-cell-tags">
+                            <ul>
+                                <li>Тег 1</li>
+                                <li>Тег 2</li>
+                                <li>Тег 3</li>
+                                <li>Тег 4</li>
+                                <li>Тег 5</li>
+                            </ul>
+                        </div>
+                        <div class="content-table_row-cell content-table_row-cell-date">22 сентября 2019</div>
+                    </div>
+                </div>
                 </div>
             </section>
        </div>

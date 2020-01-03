@@ -170,7 +170,7 @@ function generateTable(date) {
                     li.innerHTML = element.tag;
                     ul.append(li);
                 })
-                cell.innerHTML = ul;
+                cell.append(ul);
             }else{
                 cell.innerHTML = element[needdate[i]];
             }

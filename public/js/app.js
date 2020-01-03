@@ -273,7 +273,7 @@ function generateTable(date) {
             li.innerHTML = element.tag;
             ul.append(li);
           });
-          cell.innerHTML = ul;
+          cell.append(ul);
         })();
       } else {
         cell.innerHTML = element[needdate[i]];
@@ -307,8 +307,8 @@ function generateTable(date) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/macbook/Documents/верстка/orchestra calendar/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/xenx/laravel-projects/BratunyaProgrammingDay/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

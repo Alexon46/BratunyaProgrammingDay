@@ -16,7 +16,7 @@ class AuthenticationController extends Controller
 
         $user = User::query()->where('username', $username)->where('password', $password)->get()->first();
         if (empty($user)) {
-            return response()->json(["error" => "Вы кто такой, я вас не звал"]);
+            return response()->json(["error" => "Вы кто такие, я вас не звал"]);
         }
 
         return response()->json(Composition::with('tags')->get());

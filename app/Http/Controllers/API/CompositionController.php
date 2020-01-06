@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Composition;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CompositionController extends Controller
@@ -12,36 +13,32 @@ class CompositionController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index(Request $request)
     {
         $compositions = Composition::with('tags');
 
         if ($request->has('search_s')) {
-            $search = strtolower(request('search_s'));
+            $search = request('search_s');
             $compositions->where('title', 'like', "%{$search}%");
         }
         if ($request->has('title')) {
-            $title = strtolower(request('title'));
+            $title = request('title');
             $title == 'asc' ? $compositions->orderBy('title') : $compositions->orderByDesc('title');
         }
         if ($request->has('date')) {
-            $date = strtolower(request('date'));
+            $date = request('date');
             $date == 'asc' ? $compositions->orderBy('updated_at') : $compositions->orderByDesc('updated_at');
         }
-        // should be optimized
         if ($request->has('tag')) {
             $tags = request('tag');
-            $compositions->each(function ($composition) use ($tags) {
-                $cTags = $composition;
-                if (count($tags) == count($cTags) && in_array($tags, $cTags)){
-                    return $composition;
-                }
+            $compositions->whereHas('tags', function ($query) use ($tags) {
+                $query->whereIn('tag', $tags);
             });
         }
-
-        return response()->json($compositions->get());
+        $result = $compositions->get();
+        return $result->isNotEmpty() ? response()->json($result) : response()->json(['error' => 'Ничего не найдено']);
     }
 
     /**

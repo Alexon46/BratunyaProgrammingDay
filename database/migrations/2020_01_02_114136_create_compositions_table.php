@@ -16,7 +16,7 @@ class CreateCompositionsTable extends Migration
         Schema::create('compositions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->timestamps();
+            $table->timestamp('updated_at');
         });
     }
 

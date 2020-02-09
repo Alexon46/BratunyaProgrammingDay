@@ -15,19 +15,21 @@
             <section class="header">
                 <div class="container">
                     <div class="header-content">
-                        <h1>Календарь <br> <span class="fs-sm">учета произведений</span></h1>
-                        <div class="form-title">Подтвердить членство</div>
-                        <form id="sign_in">
-                            <label>
-                                <input type="text" name="name">
-                                <span class="placeholder">Ваше имя</span>
-                            </label>
-                            <label>
-                                <input type="text" name="instrument">
-                                <span class="placeholder">Ваш инструмент</span>
-                            </label>
-                            <button>Войти</button>
-                        </form>
+                        <div class="header-content_text">
+                            <h1>Календарь <br> <span class="fs-sm">учета произведений</span></h1>
+                            <div class="form-title">Подтвердить членство</div>
+                            <form id="sign_in">
+                                <label>
+                                    <input type="text" name="name">
+                                    <span class="placeholder">Ваше имя</span>
+                                </label>
+                                <label>
+                                    <input type="text" name="instrument">
+                                    <span class="placeholder">Ваш инструмент</span>
+                                </label>
+                                <button>Войти</button>
+                            </form>
+                        </div>
                         <div class="header-content_image">
                             <img src={{ asset('/image/bg-home.jpg') }}>
                         </div>
@@ -42,13 +44,14 @@
                                 <input type="text" name="search_s">
                                 <span class="placeholder">Введите название</span>
                             </label>
+                            <div class="search-reset">&times;</div>
                             <button>Поиск</button>
                         </form>
                 <div class="content-table">
-                    <div class="content-table_row content-table_row-head">
-                        <div class="content-table_row-cell content-table_row-cell-title filter-btn" data-filter="title">Название произведения<div class="icon filter-order" data-value="asc"><img src={{ asset('/image/sort.svg') }} /></div></div>
-                        <div class="content-table_row-cell content-table_row-cell-tags">Теги</div>
-                        <div class="content-table_row-cell content-table_row-cell-date filter-btn" data-filter="date">Дата исполнения <div class="icon filter-order" data-value="asc"><img src={{ asset('/image/sort.svg') }} /></div></div>
+                    <div class="content-table_head">
+                        <div class="content-table_head-cell content-table_head-cell-title filter-btn" data-filter="title">Название произведения<div class="icon filter-order" data-value="asc"><img src={{ asset('/image/sort.svg') }} /></div></div>
+                        <div class="content-table_head-cell content-table_head-cell-tags">Теги</div>
+                        <div class="content-table_head-cell content-table_head-cell-updated_at filter-btn" data-filter="date">Дата исполнения <div class="icon filter-order" data-value="asc"><img src={{ asset('/image/sort.svg') }} /></div></div>
                     </div>
                     <div class="content-table_row">
                         <div class="content-table_row-cell content-table_row-cell-title">Название произведения1</div>
